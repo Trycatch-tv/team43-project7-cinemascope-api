@@ -52,7 +52,7 @@ const get_movie_by_id = async(req, res) => {
 
 /**Update movie by id */
 const update_movie_by_id = async(req, res) => {
-    let user = await movieService.update_user_by_id(req, function(err, result) {
+    let movie = await movieService.update_user_by_id(req, function(err, result) {
         if (err) {
                 return res.status(400).json({
                     success: false,
