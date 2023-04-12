@@ -1,49 +1,36 @@
 import { DataTypes } from "sequelize";
-import { conectionSequelize } from "../connection/connection-MySQL.js";
+import { conectionSequelize } from "../connection/db.js";
 
-export const Movie = conectionSequelize.define("movies", {
-  id: {
+export const Movie = conectionSequelize.define('Movies', {
+  movie_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
-    allowIncrements: true,
+    autoIncrement: true
   },
   title: {
-    type: DataTypes.STRING(120),
-    allowNull: false,
-    unique: false,
-  },
-  genres: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: false,
+    type: DataTypes.STRING(255),
+    allowNull: false
   },
   cover_url: {
-    type: DataTypes.STRING(120),
-    allowNull: false,
-    unique: false,
+    type: DataTypes.STRING(255),
+    allowNull: false
   },
   trailer_url: {
-    type: DataTypes.STRING(120),
-    allowNull: false,
-    unique: false,
+    type: DataTypes.STRING(255),
+    allowNull: false
   },
-  release_year: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: false,
+  release_date: {
+    type: DataTypes.DATEONLY,
+    allowNull: false
   },
-  director: {
-    type: DataTypes.STRING(50),
-    allowNull: false,
-    unique: false,
+  directed_by: {
+    type: DataTypes.STRING(255),
+    allowNull: false
   },
   synopsis: {
-    type: DataTypes.STRING(500),
-    allowNull: false,
-    unique: false,
-  },
-  // Timestamps
-  createdAt: DataTypes.DATE,
-  updatedAt: DataTypes.DATE,
+    type: DataTypes.STRING(255),
+    allowNull: false
+  }
+}, {
+  timestamps: false
 });

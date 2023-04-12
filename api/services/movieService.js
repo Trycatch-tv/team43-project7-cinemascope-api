@@ -1,4 +1,4 @@
-import { Movie } from "../models/movies.js";
+import { Movie } from "../models/Movies.js";
 
 import { Op } from "sequelize";
 // Create movie

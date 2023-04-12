@@ -1,13 +1,13 @@
 import movieService from '../services/movieService.js';
-/**Crete movie */
+
 const create_movie = async(req, res) => {
-    console.log(req.body.titulo)
+    
     let movie = await movieService.create_movie(req, function(err, result) {
         if (err) {
-                return res.status(400).json({
-                    success: false,
-                    body: err
-                });
+            return res.status(400).json({
+                success: false,
+                body: err
+            });
         }
         return res.status(200).json({
             success: true,
