@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import route from './routes/routes.js'
-import { Movie } from './models/movies.js'
 
 const app = express();
 
