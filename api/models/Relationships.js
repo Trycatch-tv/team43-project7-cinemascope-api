@@ -1,8 +1,8 @@
-import { Genre } from './Genres.js'
-import { GenreMovie } from './GenresMovie.js'
+import { review } from './reviews.js'
+import { reviewMovie } from './reviewsMovie.js'
 import { Movie } from './Movies.js'
 import { Review } from './Reviews.js'
 
-GenreMovie.belongsTo(Movie, { foreignKey: 'movie_id' });
-GenreMovie.belongsTo(Genre, { foreignKey: 'genre_id' });
+reviewMovie.belongsTo(Movie, { foreignKey: 'movie_id' });
+reviewMovie.belongsTo(review, { foreignKey: 'review_id' });
 Review.belongsTo(Movie, { foreignKey: 'movie_id' });
