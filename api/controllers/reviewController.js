@@ -1,8 +1,8 @@
-import movieService from '../services/movieService.js';
+import reviewService from '../services/reviewService.js';
 
-const create_movie = async(req, res) => {
+const create_review = async(req, res) => {
     
-    let movie = await movieService.create_movie(req, function(err, result) {
+    let review = await reviewService.create_review(req, function(err, result) {
         if (err) {
             return res.status(400).json({
                 success: false,
@@ -16,9 +16,9 @@ const create_movie = async(req, res) => {
     });
 }
 
-/**Get all movies */
-const get_movies = async(req, res) => {
-    let movie = await movieService.get_movies(req, function(err, result) {
+/**Get all reviews */
+const get_reviews = async(req, res) => {
+    let review = await reviewService.get_reviews(req, function(err, result) {
         if (err) {
             console.log(err);
             return res.status(400).json({
@@ -33,9 +33,9 @@ const get_movies = async(req, res) => {
     });
 }
 
-/**Get movie by id */
-const get_movie_by_id = async(req, res) => {
-    let movie = await movieService.get_movie_by_id(req, function(err, result) {
+/**Get reviews by id */
+const get_review_by_id = async(req, res) => {
+    let review = await reviewService.get_review_by_id(req, function(err, result) {
         if (err) {
             console.log(err);
             return res.status(400).json({
@@ -50,9 +50,9 @@ const get_movie_by_id = async(req, res) => {
     });
 }
 
-/**Update movie by id */
-const update_movie_by_id = async(req, res) => {
-    let movie = await movieService.update_movie_by_id(req, function(err, result) {
+/**Update review by id */
+const update_review_by_id = async(req, res) => {
+    let review = await reviewService.update_review_by_id(req, function(err, result) {
         if (err) {
                 return res.status(400).json({
                     success: false,
@@ -66,9 +66,9 @@ const update_movie_by_id = async(req, res) => {
     });
 }
 
-/**Delete movie by ID */
-const delete_movie_by_id = async(req, res) => {
-    let movie = await movieService.delete_movie_by_id(req, function(err, result) {
+/**Delete review by ID */
+const delete_review_by_id = async(req, res) => {
+    let review = await reviewService.delete_review_by_id(req, function(err, result) {
         if (err) {
                 return res.status(400).json({
                     success: false,
@@ -82,11 +82,11 @@ const delete_movie_by_id = async(req, res) => {
     });
 }
 
-const movieController = {
-    create_movie,
-    get_movies,
-    get_movie_by_id,
-    update_movie_by_id,
-    delete_movie_by_id,
+const reviewController = {
+    create_review,
+    get_reviews,
+    get_review_by_id,
+    update_review_by_id,
+    delete_review_by_id,
 }
-export default movieController;
+export default reviewController;

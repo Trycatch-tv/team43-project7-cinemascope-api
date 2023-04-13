@@ -1,11 +1,11 @@
-import { Movie } from "../models/Movies.js";
+import { Movie } from "../models/movies.js";
 
 import { Op } from "sequelize";
 // Create movie
 const create_movie = async function (req, callback) {
   const {
     title,
-    genres,
+    reviews,
     cover_url,
     trailer_url,
     release_year,
@@ -16,7 +16,7 @@ const create_movie = async function (req, callback) {
   try {
     await Movie.create({
       title,
-      genres,
+      reviews,
       cover_url,
       trailer_url,
       release_year,
@@ -46,7 +46,7 @@ const get_movies = async function (body, callback) {
 const get_movie_by_id = async function (req, callback) {
   try {
     const movieData = await Movie.findAll({
-      where: { id: { [Op.like]: `%${req.params.movieId}` } },
+      where: { movie_id: { [Op.like]: `%${req.params.movieId}` } },
     });
     if (Object.keys(movieData).length === 0) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
@@ -60,10 +60,10 @@ const get_movie_by_id = async function (req, callback) {
 };
 
 // Update movie by ID
-const update_user_by_id = async function (req, callback) {
+const update_movie_by_id = async function (req, callback) {
   const {
     title,
-    genres,
+    reviews,
     cover_url,
     trailer_url,
     release_year,
@@ -72,7 +72,7 @@ const update_user_by_id = async function (req, callback) {
   } = req.body;
   try {
     const movieData = await Movie.findAll({
-      where: { id: { [Op.like]: `%${req.params.movieId}` } },
+      where: { movie_id: { [Op.like]: `%${req.params.movieId}` } },
     });
     if (Object.keys(movieData).length === 0) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
@@ -81,7 +81,7 @@ const update_user_by_id = async function (req, callback) {
     await Movie.update(
       {
         title,
-        genres,
+        reviews,
         cover_url,
         trailer_url,
         release_year,
@@ -89,7 +89,7 @@ const update_user_by_id = async function (req, callback) {
         synopsis,
         // token: req.body.titulo + req.body.genero,
       },
-      { where: { id: req.params.movieId } }
+      { where: { movie_id: req.params.movieId } }
     );
     callback(null, "Successful movie updated");
   } catch (err) {
@@ -102,13 +102,13 @@ const update_user_by_id = async function (req, callback) {
 const delete_movie_by_id = async function (req, callback) {
   try {
     const movieData = await Movie.findAll({
-      where: { id: { [Op.like]: `%${req.params.movieId}` } },
+      where: { movie_id: { [Op.like]: `%${req.params.movieId}` } },
     });
     if (Object.keys(movieData).length === 0) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
       return;
     }
-    await Movie.destroy({ where: { id: req.params.movieId } });
+    await Movie.destroy({ where: { movie_id: req.params.movieId } });
     callback(null, "Successful movie deleted");
   } catch (err) {
     callback(err);
@@ -120,7 +120,7 @@ const movieService = {
   create_movie,
   get_movies,
   get_movie_by_id,
-  update_user_by_id,
+  update_movie_by_id,
   delete_movie_by_id,
 };
 

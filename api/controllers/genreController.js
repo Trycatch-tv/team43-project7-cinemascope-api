@@ -1,8 +1,8 @@
-import movieService from '../services/movieService.js';
+import genreService from '../services/genreService.js';
 
-const create_movie = async(req, res) => {
+const create_genre = async(req, res) => {
     
-    let movie = await movieService.create_movie(req, function(err, result) {
+    let genre = await genreService.create_genre(req, function(err, result) {
         if (err) {
             return res.status(400).json({
                 success: false,
@@ -16,9 +16,9 @@ const create_movie = async(req, res) => {
     });
 }
 
-/**Get all movies */
-const get_movies = async(req, res) => {
-    let movie = await movieService.get_movies(req, function(err, result) {
+/**Get all genres */
+const get_genres = async(req, res) => {
+    let genre = await genreService.get_genres(req, function(err, result) {
         if (err) {
             console.log(err);
             return res.status(400).json({
@@ -33,9 +33,9 @@ const get_movies = async(req, res) => {
     });
 }
 
-/**Get movie by id */
-const get_movie_by_id = async(req, res) => {
-    let movie = await movieService.get_movie_by_id(req, function(err, result) {
+/**Get genre by id */
+const get_genre_by_id = async(req, res) => {
+    let genre = await genreService.get_genre_by_id(req, function(err, result) {
         if (err) {
             console.log(err);
             return res.status(400).json({
@@ -50,9 +50,9 @@ const get_movie_by_id = async(req, res) => {
     });
 }
 
-/**Update movie by id */
-const update_movie_by_id = async(req, res) => {
-    let movie = await movieService.update_movie_by_id(req, function(err, result) {
+/**Update genre by id */
+const update_genre_by_id = async(req, res) => {
+    let genre = await genreService.update_genre_by_id(req, function(err, result) {
         if (err) {
                 return res.status(400).json({
                     success: false,
@@ -66,9 +66,9 @@ const update_movie_by_id = async(req, res) => {
     });
 }
 
-/**Delete movie by ID */
-const delete_movie_by_id = async(req, res) => {
-    let movie = await movieService.delete_movie_by_id(req, function(err, result) {
+/**Delete genre by ID */
+const delete_genre_by_id = async(req, res) => {
+    let genre = await genreService.delete_genre_by_id(req, function(err, result) {
         if (err) {
                 return res.status(400).json({
                     success: false,
@@ -82,11 +82,11 @@ const delete_movie_by_id = async(req, res) => {
     });
 }
 
-const movieController = {
-    create_movie,
-    get_movies,
-    get_movie_by_id,
-    update_movie_by_id,
-    delete_movie_by_id,
+const genreController = {
+    create_genre,
+    get_genres,
+    get_genre_by_id,
+    update_genre_by_id,
+    delete_genre_by_id,
 }
-export default movieController;
+export default genreController;
