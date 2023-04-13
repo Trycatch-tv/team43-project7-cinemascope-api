@@ -1,4 +1,4 @@
-import { genre } from "../models/genres.js";
+import { Genre } from "../models/Genres.js";
 
 import { Op } from "sequelize";
 // Create genre
@@ -6,7 +6,7 @@ const create_genre = async function (req, callback) {
   const { name } = req.body;
 
   try {
-    await genre.create({
+    await Genre.create({
       name,
     });
     callback(null, "Successful genre created");
@@ -19,7 +19,7 @@ const create_genre = async function (req, callback) {
 // Get all genres
 const get_genres = async function (body, callback) {
   try {
-    const genresData = await genre.findAll();
+    const genresData = await Genre.findAll();
     callback(null, genresData);
   } catch (err) {
     callback(err);
@@ -30,7 +30,7 @@ const get_genres = async function (body, callback) {
 // Get genre by ID
 const get_genre_by_id = async function (req, callback) {
   try {
-    const genreData = await genre.findAll({
+    const genreData = await Genre.findAll({
       where: { genre_id: { [Op.like]: `%${req.params.genreId}` } },
     });
     if (Object.keys(genreData).length === 0) {
@@ -48,14 +48,14 @@ const get_genre_by_id = async function (req, callback) {
 const update_genre_by_id = async function (req, callback) {
   const { name } = req.body;
   try {
-    const genreData = await genre.findAll({
+    const genreData = await Genre.findAll({
       where: { genre_id: { [Op.like]: `%${req.params.genreId}` } },
     });
     if (Object.keys(genreData).length === 0) {
       callback(`The genre with id: ${req.params.genreId} doesn't exists`);
       return;
     }
-    await genre.update(
+    await Genre.update(
       {
         name,
       },
@@ -71,7 +71,7 @@ const update_genre_by_id = async function (req, callback) {
 // Delete genre by ID
 const delete_genre_by_id = async function (req, callback) {
   try {
-    const genreData = await genre.findAll({
+    const genreData = await Genre.findAll({
       where: { genre_id: { [Op.like]: `%${req.params.genreId}` } },
     });
     if (Object.keys(genreData).length === 0) {

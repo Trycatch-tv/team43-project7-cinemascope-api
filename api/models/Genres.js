@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import { conectionSequelize } from "../connection/db.js";
 
-export const review = conectionSequelize.define('reviews', {
-  review_id: {
+export const Genre = conectionSequelize.define('Genres', {
+  genre_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
