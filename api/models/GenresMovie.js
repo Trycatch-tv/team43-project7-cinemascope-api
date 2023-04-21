@@ -8,5 +8,6 @@ export const GenreMovie = conectionSequelize.define('GenresMovie', {
     autoIncrement: true
   }
 }, {
+  freezeTableName: true,
   timestamps: false
 });

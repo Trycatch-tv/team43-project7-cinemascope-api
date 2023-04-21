@@ -1,4 +1,6 @@
 import { Movie } from "../models/movies.js";
+import { GenreMovie } from "../models/GenresMovie.js";
+import { Review } from "../models/Reviews.js";
 
 import { Op } from "sequelize";
 // Create movie
@@ -86,6 +88,8 @@ const delete_movie_by_id = async function (req, callback) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
       return;
     }
+    await GenreMovie.destroy({ where: { movie_id: req.params.movieId } });
+    await Review.destroy({ where: { movie_id: req.params.movieId } });
     await Movie.destroy({ where: { movie_id: req.params.movieId } });
     callback(null, "Successful movie deleted");
   } catch (err) {
