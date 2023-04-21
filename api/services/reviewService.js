@@ -32,10 +32,8 @@ const get_reviews = async function (body, callback) {
 // Get review by ID
 const get_review_by_id = async function (req, callback) {
   try {
-    const reviewData = await Review.findAll({
-      where: { review_id: { [Op.like]: `%${req.params.reviewId}` } },
-    });
-    if (Object.keys(reviewData).length === 0) {
+    const reviewData = await Review.findByPk(req.params.reviewId);
+    if (reviewData == null) {
       callback(`The review with id: ${req.params.reviewId} doesn't exists`);
       return;
     }
@@ -50,10 +48,8 @@ const get_review_by_id = async function (req, callback) {
 const update_review_by_id = async function (req, callback) {
   const { movie_id, rating, review } = req.body;
   try {
-    const reviewData = await Review.findAll({
-      where: { review_id: { [Op.like]: `%${req.params.reviewId}` } },
-    });
-    if (Object.keys(reviewData).length === 0) {
+    const reviewData = await Review.findByPk(req.params.reviewId);
+    if (reviewData == null) {
       callback(`The review with id: ${req.params.reviewId} doesn't exists`);
       return;
     }
@@ -75,10 +71,8 @@ const update_review_by_id = async function (req, callback) {
 // Delete review by ID
 const delete_review_by_id = async function (req, callback) {
   try {
-    const reviewData = await Review.findAll({
-      where: { review_id: { [Op.like]: `%${req.params.reviewId}` } },
-    });
-    if (Object.keys(reviewData).length === 0) {
+    const reviewData = await Review.findByPk(req.params.reviewId);
+    if (reviewData == null) {
       callback(`The review with id: ${req.params.reviewId} doesn't exists`);
       return;
     }

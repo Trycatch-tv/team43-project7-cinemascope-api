@@ -30,10 +30,8 @@ const get_genres = async function (body, callback) {
 // Get genre by ID
 const get_genre_by_id = async function (req, callback) {
   try {
-    const genreData = await Genre.findAll({
-      where: { genre_id: { [Op.like]: `%${req.params.genreId}` } },
-    });
-    if (Object.keys(genreData).length === 0) {
+    const genreData = await Genre.findByPk(req.params.genreId);
+    if (genreData == null) {
       callback(`The genre with id: ${req.params.genreId} doesn't exists`);
       return;
     }
@@ -48,10 +46,8 @@ const get_genre_by_id = async function (req, callback) {
 const update_genre_by_id = async function (req, callback) {
   const { name } = req.body;
   try {
-    const genreData = await Genre.findAll({
-      where: { genre_id: { [Op.like]: `%${req.params.genreId}` } },
-    });
-    if (Object.keys(genreData).length === 0) {
+    const genreData = await Genre.findByPk(req.params.genreId);
+    if (genreData == null) {
       callback(`The genre with id: ${req.params.genreId} doesn't exists`);
       return;
     }
@@ -71,10 +67,8 @@ const update_genre_by_id = async function (req, callback) {
 // Delete genre by ID
 const delete_genre_by_id = async function (req, callback) {
   try {
-    const genreData = await Genre.findAll({
-      where: { genre_id: { [Op.like]: `%${req.params.genreId}` } },
-    });
-    if (Object.keys(genreData).length === 0) {
+    const genreData = await Genre.findByPk(req.params.genreId);
+    if (genreData == null) {
       callback(`The genre with id: ${req.params.genreId} doesn't exists`);
       return;
     }
