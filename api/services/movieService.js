@@ -3,24 +3,16 @@ import { Movie } from "../models/movies.js";
 import { Op } from "sequelize";
 // Create movie
 const create_movie = async function (req, callback) {
-  const {
-    title,
-    reviews,
-    cover_url,
-    trailer_url,
-    release_year,
-    director,
-    synopsis,
-  } = req.body;
+  const { title, cover_url, trailer_url, release_date, directed_by, synopsis } =
+    req.body;
 
   try {
     await Movie.create({
       title,
-      reviews,
       cover_url,
       trailer_url,
-      release_year,
-      director,
+      release_date,
+      directed_by,
       synopsis,
       //   token: req.body.titulo + req.body.genero,
     });
@@ -45,10 +37,8 @@ const get_movies = async function (body, callback) {
 // Get movie by ID
 const get_movie_by_id = async function (req, callback) {
   try {
-    const movieData = await Movie.findAll({
-      where: { movie_id: { [Op.like]: `%${req.params.movieId}` } },
-    });
-    if (Object.keys(movieData).length === 0) {
+    const movieData = await Movie.findByPk(req.params.movieId);
+    if (movieData == null) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
       return;
     }
@@ -61,31 +51,21 @@ const get_movie_by_id = async function (req, callback) {
 
 // Update movie by ID
 const update_movie_by_id = async function (req, callback) {
-  const {
-    title,
-    reviews,
-    cover_url,
-    trailer_url,
-    release_year,
-    director,
-    synopsis,
-  } = req.body;
+  const { title, cover_url, trailer_url, release_date, directed_by, synopsis } =
+    req.body;
   try {
-    const movieData = await Movie.findAll({
-      where: { movie_id: { [Op.like]: `%${req.params.movieId}` } },
-    });
-    if (Object.keys(movieData).length === 0) {
+    const movieData = await Movie.findByPk(req.params.movieId);
+    if (movieData == null) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
       return;
     }
     await Movie.update(
       {
         title,
-        reviews,
         cover_url,
         trailer_url,
-        release_year,
-        director,
+        release_date,
+        directed_by,
         synopsis,
         // token: req.body.titulo + req.body.genero,
       },
@@ -101,10 +81,8 @@ const update_movie_by_id = async function (req, callback) {
 // Delete movie by ID
 const delete_movie_by_id = async function (req, callback) {
   try {
-    const movieData = await Movie.findAll({
-      where: { movie_id: { [Op.like]: `%${req.params.movieId}` } },
-    });
-    if (Object.keys(movieData).length === 0) {
+    const movieData = await Movie.findByPk(req.params.movieId);
+    if (movieData == null) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
       return;
     }
