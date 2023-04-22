@@ -27,7 +27,7 @@ npm install
 
 4. Create a **'.env'** file in the project root and configure the necessary environment variables for the MySQL database connection.
 ```javascript
-PORT = 3010
+PORT=3010
 DB_HOST=serverUrl
 DB_USER=username
 DB_PASSWORD=password
