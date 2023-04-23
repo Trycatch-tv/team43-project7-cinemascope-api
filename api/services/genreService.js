@@ -72,7 +72,7 @@ const delete_genre_by_id = async function (req, callback) {
       callback(`The genre with id: ${req.params.genreId} doesn't exists`);
       return;
     }
-    await genre.destroy({ where: { genre_id: req.params.genreId } });
+    await Genre.destroy({ where: { genre_id: req.params.genreId } });
     callback(null, "Successful genre deleted");
   } catch (err) {
     callback(err);

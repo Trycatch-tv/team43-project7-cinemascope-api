@@ -1,6 +1,7 @@
 import { conectionSequelize } from "./api/connection/db.js";
 import app from "./api/app.js";
 
+
 const main = async () => {
   try {
     await conectionSequelize.sync({ force: false })
