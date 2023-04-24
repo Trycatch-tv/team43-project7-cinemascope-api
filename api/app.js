@@ -7,7 +7,7 @@ import env from "./connection/config.js";
 import route from "./routes/routes.js";
 
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swager.json' assert { type: "json" };
+import swaggerDocument from './swagger.json' assert { type: "json" };
 
 const app = express();
 
