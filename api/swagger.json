@@ -1,0 +1,453 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "CinemaScope Application API",
+        "description": "Application API",
+        "license": {
+            "name": "MIT License Copyright (c) 2023 Try Catch.tv"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3306",
+            "description": "Local server"
+        },
+        {
+            "url": "https://dev-cinemascope-api.azurewebsites.net",
+            "description": "Production server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Movies",
+            "description": "Crud"
+        },
+        {
+            "name": "Genres",
+            "description": "Crud"
+        },
+        {
+            "name": "Reviews",
+            "description": "Crud"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/movies/admin": {
+            "post": {
+                "tags": [
+                    "Movies"
+                ],
+                "description": "Create new movie in system",
+                "parameters": [
+                    {
+                        "name": "movie",
+                        "in": "body",
+                        "description": "Movie that we want to create",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "example": "Mario"
+                                },
+                                "cover_url": {
+                                    "type": "string",
+                                    "example": "https://www.themoviedb.org/t/p/w1280/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"
+                                },
+                                "trailer_url": {
+                                    "type": "string",
+                                    "example": "https://youtu.be/RjNcTBXTk4I"
+                                },
+                                "release_date": {
+                                    "type": "date",
+                                    "example": "2020-01-01"
+                                },
+                                "directed_by": {
+                                    "type": "string",
+                                    "example": "Aaron Horvath, Michael Jelenic"
+                                },
+                                "synopsis": {
+                                    "type": "string",
+                                    "example": "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful movie created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/movies": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Get all movies in system",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/api/movies/{movieId}": {
+            "parameters": [
+                {
+                    "name": "movieId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of movie that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Get movie with given ID",
+                "responses": {
+                    "200": {
+                        "description": "Movie is found"
+                    },
+                    "400": {
+                        "description": "The movie with this id doesn't exists"
+                    }
+                }
+            }
+        },
+        "/api/movies/admin/{movieId}":{
+            "parameters": [
+                {
+                    "name": "movieId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of movie that we want to find",
+                    "type": "integer"
+                }
+            ],            
+            "put": {
+                "summary": "Update movie with give ID",
+                "tags": [
+                    "Movies"
+                ],
+                "parameters": [
+                    {
+                        "name": "movie",
+                        "in": "body",
+                        "description": "Movie that we want to create",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "example": "Mario"
+                                },
+                                "cover_url": {
+                                    "type": "string",
+                                    "example": "https://www.themoviedb.org/t/p/w1280/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"
+                                },
+                                "trailer_url": {
+                                    "type": "string",
+                                    "example": "https://youtu.be/RjNcTBXTk4I"
+                                },
+                                "release_date": {
+                                    "type": "date",
+                                    "example": "2020-01-01"
+                                },
+                                "directed_by": {
+                                    "type": "string",
+                                    "example": "Aaron Horvath, Michael Jelenic"
+                                },
+                                "synopsis": {
+                                    "type": "string",
+                                    "example": "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update correctly"
+                    },
+                    "400": {
+                        "description": "The movie with this id doesn't exists"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete movie with given ID",
+                "tags": [
+                    "Movies"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete correctly"
+                    },
+                    "400": {
+                        "description": "The movie with this id doesn't exists"
+                    }
+                }
+            }
+        },
+        "/api/genres/admin": {
+            "post": {
+                "tags": [
+                    "Genres"
+                ],
+                "description": "Create new genre in system",
+                "parameters": [
+                    {
+                        "name": "genre",
+                        "in": "body",
+                        "description": "Genre that we want to create",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "Thiller"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful genre created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Genres"
+                ],
+                "summary": "Get all genres in system",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/api/genres/{genreId}": {
+            "parameters": [
+                {
+                    "name": "genreId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of genre that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Genres"
+                ],
+                "summary": "Get genre with given ID",
+                "responses": {
+                    "200": {
+                        "description": "Genre is found"
+                    },
+                    "400": {
+                        "description": "The genre with this id doesn't exists"
+                    }
+                }
+            }
+        },
+        "/api/genres/admin/{genreId}":{
+            "parameters": [
+                {
+                    "name": "genreId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of genre that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "put": {
+                "summary": "Update genre with give ID",
+                "tags": [
+                    "Genres"
+                ],
+                "parameters": [
+                    {
+                        "name": "genre",
+                        "in": "body",
+                        "description": "Genre that we want to create",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "Thiller"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update correctly"
+                    },
+                    "400": {
+                        "description": "The genre with this id doesn't exists"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete genre with given ID",
+                "tags": [
+                    "Genres"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete correctly"
+                    },
+                    "400": {
+                        "description": "The genre with this id doesn't exists"
+                    }
+                }
+            }
+        },
+        "/api/reviews/admin": {
+            "post": {
+                "tags": [
+                    "Reviews"
+                ],
+                "description": "Create new review in system",
+                "parameters": [
+                    {
+                        "name": "review",
+                        "in": "body",
+                        "description": "Review that we want to create",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "movie_id": {
+                                    "type": "integer",
+                                    "example": 1
+                                },
+                                "rating": {
+                                    "type": "float",
+                                    "example": 9.5
+                                },
+                                "review": {
+                                    "type": "string",
+                                    "example": "Review example"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful review created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get all reviews in system",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/api/reviews/{reviewId}": {
+            "parameters": [
+                {
+                    "name": "reviewId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of review that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get review with given ID",
+                "responses": {
+                    "200": {
+                        "description": "Review is found"
+                    },
+                    "400": {
+                        "description": "The review with this id doesn't exists"
+                    }
+                }
+            }
+        },
+        "/api/reviews/admin/{reviewId}":{
+            "parameters": [
+                {
+                    "name": "reviewId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of review that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "delete": {
+                "summary": "Delete review with given ID",
+                "tags": [
+                    "Reviews"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete correctly"
+                    },
+                    "400": {
+                        "description": "The review with this id doesn't exists"
+                    }
+                }
+            }
+        }
+    }
+}

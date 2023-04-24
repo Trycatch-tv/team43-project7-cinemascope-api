@@ -39,6 +39,7 @@ const get_movies = async function (body, callback) {
 // Get movie by ID
 const get_movie_by_id = async function (req, callback) {
   try {
+    console.log(req.params.movieId)
     const movieData = await Movie.findByPk(req.params.movieId);
     if (movieData == null) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
