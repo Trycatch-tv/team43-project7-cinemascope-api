@@ -1,4 +1,4 @@
-import { Review } from "../../api/models/reviews.js";
+import { Review } from "../../api/models/Reviews.js";
 import sinon from "sinon";
 import reviewController from "../../api/controllers/reviewController.js";
 

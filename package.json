@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest --verbose --silent --detectOpenHandles",
+    "test": "jest",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "coverage": "jest --coverage --coverageReporters=cobertura"
