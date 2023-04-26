@@ -10,12 +10,12 @@ describe("updateMovieById", () => {
   it("Should update a movie when given a valid movie id", async () => {
     const fakeMovie = {
         "movie_id": 3,
-        "title": "Avatar: The Way of Water",
-        "cover_url": "https://www.themoviedb.org/t/p/w1280/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-        "trailer_url": "https://youtu.be/a8Gx8wiNbs8",
+        "title": "test movie",
+        "cover_url": "test cover",
+        "trailer_url": "test trailer",
         "release_date": "2022-12-15",
-        "directed_by": "James Cameron",
-        "synopsis": "Set more than a decade after the events of the first film, learn the story of the Sully family, the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure."
+        "directed_by": "test",
+        "synopsis": "test"
     };
 
     const movieSaveStub = sinon.stub().resolves(fakeMovie);
