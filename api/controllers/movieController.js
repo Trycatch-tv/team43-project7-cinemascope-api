@@ -54,10 +54,10 @@ const get_movie_by_id = async(req, res) => {
 const update_movie_by_id = async(req, res) => {
     let movie = await movieService.update_movie_by_id(req, function(err, result) {
         if (err) {
-                return res.status(400).json({
-                    success: false,
-                    body: err
-                });
+            return res.status(400).json({
+                success: false,
+                body: err
+            });
         }
         return res.status(200).json({
             success: true,

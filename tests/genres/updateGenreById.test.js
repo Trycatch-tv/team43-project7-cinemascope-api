@@ -29,10 +29,10 @@ describe("updateGenreById", () => {
     sinon.assert.calledWith(res.status, 200);
     sinon.assert.calledOnce(res.json);
     sinon.assert.calledWith(res.json, 
-        {
-            "success": true,
-            "body": "Successful genre updated"
-        });
+      {
+        "success": true,
+        "body": "Successful genre updated"
+      });
   });
 
   it('Should return a 400 when given an invalid genre id', async () => {

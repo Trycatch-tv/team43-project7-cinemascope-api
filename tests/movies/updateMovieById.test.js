@@ -9,13 +9,13 @@ describe("updateMovieById", () => {
 
   it("Should update a movie when given a valid movie id", async () => {
     const fakeMovie = {
-        "movie_id": 3,
-        "title": "test movie",
-        "cover_url": "test cover",
-        "trailer_url": "test trailer",
-        "release_date": "2022-12-15",
-        "directed_by": "test",
-        "synopsis": "test"
+      "movie_id": 3,
+      "title": "test movie",
+      "cover_url": "test cover",
+      "trailer_url": "test trailer",
+      "release_date": "2022-12-10",
+      "directed_by": "test",
+      "synopsis": "test"
     };
 
     const movieSaveStub = sinon.stub().resolves(fakeMovie);
@@ -30,14 +30,15 @@ describe("updateMovieById", () => {
 
     await movieController.update_movie_by_id(req, res);
     sinon.assert.calledOnce(Movie.findByPk);
+    sinon.assert.calledOnce(movieSaveStub);
     sinon.assert.calledOnce(res.status);
     sinon.assert.calledWith(res.status, 200);
     sinon.assert.calledOnce(res.json);
     sinon.assert.calledWith(res.json, 
-        {
-            "success": true,
-            "body": "Successful movie updated"
-        });
+      {
+        "success": true,
+        "body": "Successful movie updated"
+      });
   });
 
   it('Should return a 400 when given an invalid movie id', async () => {
