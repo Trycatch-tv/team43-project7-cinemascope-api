@@ -1,4 +1,4 @@
-import { Genre } from "../../api/models/genres.js";
+import { Genre } from "../../api/models/Genres.js";
 import sinon from "sinon";
 import genreController from "../../api/controllers/genreController.js";
 
