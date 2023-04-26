@@ -54,6 +54,7 @@ const get_movie_by_id = async function (req, callback) {
 
 // Update movie by ID
 const update_movie_by_id = async function (req, callback) {
+  console.log('hello world')
   const { title, cover_url, trailer_url, release_date, directed_by, synopsis } =
     req.body;
   try {
