@@ -54,26 +54,23 @@ const get_movie_by_id = async function (req, callback) {
 
 // Update movie by ID
 const update_movie_by_id = async function (req, callback) {
-  const { title, cover_url, trailer_url, release_date, directed_by, synopsis } =
-    req.body;
   try {
     const movieData = await Movie.findByPk(req.params.movieId);
+
     if (movieData == null) {
       callback(`The movie with id: ${req.params.movieId} doesn't exists`);
       return;
     }
-    await Movie.update(
-      {
-        title,
-        cover_url,
-        trailer_url,
-        release_date,
-        directed_by,
-        synopsis,
-        // token: req.body.titulo + req.body.genero,
-      },
-      { where: { movie_id: req.params.movieId } }
-    );
+
+    const { title, cover_url, trailer_url, release_date, directed_by, synopsis } = req.body;
+    movieData.title = title
+    movieData.cover_url = cover_url
+    movieData.trailer_url = trailer_url
+    movieData.release_date = release_date
+    movieData.directed_by = directed_by
+    movieData.synopsis = synopsis
+
+    await movieData.save()
     callback(null, "Successful movie updated");
   } catch (err) {
     callback(err);

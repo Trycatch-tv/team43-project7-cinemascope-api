@@ -44,19 +44,19 @@ const get_genre_by_id = async function (req, callback) {
 
 // Update genre by ID
 const update_genre_by_id = async function (req, callback) {
-  const { name } = req.body;
   try {
     const genreData = await Genre.findByPk(req.params.genreId);
+    
     if (genreData == null) {
       callback(`The genre with id: ${req.params.genreId} doesn't exists`);
       return;
     }
-    await Genre.update(
-      {
-        name,
-      },
-      { where: { genre_id: req.params.genreId } }
-    );
+
+    const { name } = req.body;
+
+    genreData.name = name
+    
+    await genreData.save()
     callback(null, "Successful genre updated");
   } catch (err) {
     callback(err);
